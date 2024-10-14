@@ -9,7 +9,7 @@ beforeAll(async () => {
 });
 
 describe('User APIs', () => {
-    it('POST /v1/user - Should create a new user', async () => {
+    it('POST /user - Should create a new user', async () => {
         const response = await request(app)
             .post('/v1/user')
             .send({
