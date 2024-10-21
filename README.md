@@ -70,5 +70,4 @@ WEBAPP/
     -Fork the repository.
     -Work on feature branches and commit changes via pull requests.
     -Do not commit node_modules or other unnecessary files; ensure a       proper .gitignore is in place.
-
-
+added summ line
