@@ -43,7 +43,7 @@ source "amazon-ebs" "ubuntu" {
   ami_name      = "${replace(var.ami_name_prefix, "/[^a-zA-Z0-9-]/", "")}-${formatdate("YYYYMMDDHHmmss", timestamp())}"
   instance_type = var.instance_type
   region        = var.aws_region
-  source_ami    = var.source_ami
+  source_ami    =    var.source_ami
   ssh_username  = "ubuntu"
   access_key    = var.aws_access_key
   secret_key    = var.aws_secret_key
