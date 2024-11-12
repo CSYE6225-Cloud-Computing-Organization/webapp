@@ -65,7 +65,6 @@ jobs:
         echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
       working-directory: ./
 
-
     - name: Run Tests
       run: npm test
 
@@ -111,7 +110,7 @@ jobs:
 
     - name: Share AMI with DEMO Account
       run: |
-        aws ec2 modify-image-attribute --image-id ${{ env.AMI_ID }} --launch-permission "Add=[{UserId=${{ secrets.DEMO_ACCOUNT_ID }} }]"
+        aws ec2 modify-image-attribute --image-id ${{ env.AMI_ID }} --launch-permission "Add=[{UserId=${{ secrets.DEMO_ACCOUNT_ID }}]"
       env:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
 
@@ -127,7 +126,6 @@ jobs:
       run: |
         aws ec2 create-launch-template-version \
           --launch-template-id ${{ secrets.LAUNCH_TEMPLATE_ID }} \
-          --source-version 1 \
           --version-description "New version with updated AMI" \
           --launch-template-data "{\"ImageId\":\"${{ env.AMI_ID }}\"}"
 
@@ -150,7 +148,7 @@ jobs:
       run: |
         STATUS="InProgress"
         while [ "$STATUS" == "InProgress" ]; do
-          sleep 30
+          sleep 60
           STATUS=$(aws autoscaling describe-instance-refreshes \
             --auto-scaling-group-name ${{ secrets.ASG_NAME }} \
             --query "InstanceRefreshes[?InstanceRefreshId=='${{ env.REFRESH_ID }}'].Status" \
